@@ -30,7 +30,7 @@ Your repo will include:
 - Header files
 - Lib folders with Makefiles
 - .gitignore
-- Source file
+- Sources folder
 - First C file
 - (Optional) Unit tests (with make rule)
 - (Optional) GitHub actions
