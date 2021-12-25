@@ -3,7 +3,7 @@ The easiest way to init your {EPITECH.} repository.
 
 We all agree that the structure of our Epitech repos is always the same ?
 
-So why not automate your creation a bit ?
+So why not automate it creation a bit ?
 
 By answering 4 questions, this script will create YOUR repo (exactly as you imagine it) !
 
