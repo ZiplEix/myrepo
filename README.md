@@ -11,7 +11,7 @@ This tool was designed for C projects at Epitech but can correspond to other nee
 
 ## Installation
 - Download the python file.
-- Add alias in your Run Command file :
+- Add alias to your Run Command file :
 ```alias repo="python3 /path/to/myRepo.py"```
 
 That's it !
