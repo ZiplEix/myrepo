@@ -19,7 +19,10 @@ That's it !
 ## How does it work ?
 To init your repo, open a command prompt at it root and run
 ```repo```
+
 ![Command Prompt Screenshot](https://github.com/MathiDEV/myrepo/blob/main/myRepo.jpg?raw=true)
+
+
 This will ask you a few questions and at the end you will have your repo.
 
 Your repo will include:
@@ -31,6 +34,8 @@ Your repo will include:
 - First C file
 - (Optional) Unit tests (with make rule)
 - (Optional) GitHub actions
+
+
 ![Output files](https://github.com/MathiDEV/myrepo/blob/main/files.jpg?raw=true)
 ## It is not custom enough for me...
 I am sorry ! For reasons of simplicity and visibility, this code is not the easiest to read ... However, it is not very complicated to modify. For example, if you want to add a new rule to .gitignore, just edit the variable "gitignore"
