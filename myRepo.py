@@ -1,7 +1,7 @@
 import os
 gitignore = "*.o\n*.out\n*.lib\n*.a\n*.gcno\n*.gcda\n.vscode\n"
 lib_makefile_content = "##\n## EPITECH PROJECT, 2021\n## $1\n## File description:\n## Makefile for lib $2.\n##\n\nSRC=	$(wildcard *.c)\n\nNAME=	lib$2.a\n\nLIB_DEST=	../\n\nOBJ=	$(SRC:.c=.o)\n\nall:	$(NAME)\n\n$(NAME):	$(OBJ)\n	ar rc $(NAME) $(OBJ)\n	cp $(NAME) $(LIB_DEST)\n\nclean:\n	rm -f $(OBJ)\n\nfclean: clean\n	rm -f $(NAME)\n	rm -f ../$(NAME)\n\nre: fclean all\n"
-github_ci = "name: CI\n\non: push\njobs:\n  run-tests:\n    runs-on: ubuntu-latest\n    # needed for criterion\n    container:\n        image: epitechcontent/epitest-docker:latest\n\n    steps:\n    - uses: actions/checkout@v2\n    - name: compile binary\n      run: |\n          make\n          make re\n          make check\n          \n  code-quality:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: install thingz\n      run: sudo apt install -y clang-tidy clang-format\n    - name: clang-format lint\n      run: make CI"
+github_ci = "name: CI\n\non: push\njobs:\n  run-tests:\n    runs-on: ubuntu-latest\n    # needed for criterion\n    container:\n        image: epitechcontent/epitest-docker:latest\n\n    steps:\n    - uses: actions/checkout@v2\n    - name: compile binary\n      run: |\n          make\n          make re\n          make check\n\n  code-quality:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: install thingz\n      run: sudo apt install -y clang-tidy clang-format\n    - name: clang-format lint\n      run: make CI"
 ascii_logo = ''' ____________________________________________
 /                   _____                    \\
 |                  |  __ \                   |
@@ -97,7 +97,7 @@ if len(infos["libs"][2]) > 0:
         if (lib_name != infos["name"][2]):
             lib_header = open('include/'+lib_name+'.h', 'w+')
             lib_header.write("/*\n** EPITECH PROJECT, 2021\n** " + repo_name + "\n** File description:\n** Header file for lib " + lib_name + ".\n*/\n\n#ifndef "+lib_name.upper()+"_H_\n    #define "+lib_name.upper()+"_H_\n\n#endif")
-            includes += ("\n#include " + lib_name + ".h")
+            includes += ("\n#include \"" + lib_name + ".h\"")
             lib_header.close()
     if len(includes) > 0:
         includes += '\n'
@@ -120,7 +120,7 @@ if infos["tests"][2]:
     if not os.path.exists("tests"):
         os.mkdir("tests")
         tests = open('tests/tests_'+infos["name"][2]+'.c', 'w+')
-        tests.write("/*\n** EPITECH PROJECT, 2021\n** " + repo_name + "\n** File description:\n** Unit tests for " + infos["name"][2] + " project.\n*/\n\n#include <criterion/criterion.h>\n#include <criterion/redirect.h>\n#include \"../includes/"+infos["name"][2]+".h\"\n\n")
+        tests.write("/*\n** EPITECH PROJECT, 2021\n** " + repo_name + "\n** File description:\n** Unit tests for " + infos["name"][2] + " project.\n*/\n\n#include <criterion/criterion.h>\n#include <criterion/redirect.h>\n#include \"../include/"+infos["name"][2]+".h\"\n\n")
         tests.close()
 makefile += phony + "\n"
 
