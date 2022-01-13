@@ -1,7 +1,7 @@
 import os
 gitignore = "*.o\n*.out\n*.lib\n*.a\n*.gcno\n*.gcda\n.vscode\n"
 lib_makefile_content = "##\n## EPITECH PROJECT, 2021\n## $1\n## File description:\n## Makefile for lib $2.\n##\n\nSRC=	$(wildcard *.c)\n\nNAME=	lib$2.a\n\nLIB_DEST=	../\n\nOBJ=	$(SRC:.c=.o)\n\nall:	$(NAME)\n\n$(NAME):	$(OBJ)\n	ar rc $(NAME) $(OBJ)\n	cp $(NAME) $(LIB_DEST)\n\nclean:\n	rm -f $(OBJ)\n\nfclean: clean\n	rm -f $(NAME)\n	rm -f ../$(NAME)\n\nre: fclean all\n"
-github_ci = "name: CI\n\non: push\njobs:\n  run-tests:\n    runs-on: ubuntu-latest\n    # needed for criterion\n    container:\n        image: epitechcontent/epitest-docker:latest\n\n    steps:\n    - uses: actions/checkout@v2\n    - name: compile binary\n      run: |\n          make\n          make re\n          make check\n\n  code-quality:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: install thingz\n      run: sudo apt install -y clang-tidy clang-format\n    - name: clang-format lint\n      run: make CI"
+github_ci = "name: CI\n\non: push\njobs:\n  run-tests:\n    runs-on: ubuntu-latest\n    # needed for criterion\n    container:\n        image: epitechcontent/epitest-docker:latest\n\n    steps:\n    - uses: actions/checkout@v2\n    - name: compile binary\n      run: |\n          make\n          make re\n\n  code-quality:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: install thingz\n      run: sudo apt install -y clang-tidy clang-format\n    - name: clang-format lint\n      run: make CI"
 ascii_logo = ''' ____________________________________________
 /                   _____                    \\
 |                  |  __ \                   |
