@@ -114,7 +114,7 @@ if infos["tests"][2]:
 makefile += "\nre:		fclean all\n\n"
 
 if infos["tests"][2]:
-    makefile += "unit_tests:		re\n		gcc -o unit_tests $(SRC) tests/test_" + infos["name"][2] + ".c $(LIB) $(TESTS)\n\n"
+    makefile += "unit_tests:		re\n		gcc -o unit_tests $(SRC) tests/tests_" + infos["name"][2] + ".c $(LIB) $(TESTS)\n\n"
     makefile += "tests_run:		unit_tests\n		./unit_tests\n\n"
     phony += " unit_tests tests_run"
     if not os.path.exists("tests"):
