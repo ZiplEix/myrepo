@@ -64,7 +64,7 @@ NAME	=	''' + infos["name"][2] + '''
 
 TESTS	=	-lcriterion --coverage
 
-LIB	=	'''
+LIB     ='''
 
 lib_actions = ""
 
@@ -82,32 +82,32 @@ main_file.close()
 
 if infos["lib"][2] == False:
     lib_name = "library"
+
     if not os.path.exists("lib"):
         os.mkdir("lib")
+
     if not os.path.exists("include/my.h"):
         include_file = open("include/my.h", "w+")
         include_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n**\n*/\n\n#ifndef " + lib_name.upper() + "_H_\n    #define " + lib_name.upper() + "\n\nint " + infos["name"][2] + "(int argc, char **argv);\n\n#endif\n")
 
-if infos["lib"][2]:
-    makefile += "	-L./lib -l" + " -l".join("library")
-    lib_actions = "			make$ -C./lib/" + "\n			make$ -C./lib/".join("library")+ "\n"
+if infos["lib"][2] == True:
+    lib_name = "library"
+    makefile += "	-L./lib -llibrary"
+    lib_actions = "			make$ -C./lib/" + "\n			make$ -C./lib/library\n"
+
     if not os.path.exists("lib"):
         os.mkdir("lib")
 
-    lib_name = "library"
     if not os.path.exists("lib/"+lib_name):
         os.mkdir("lib/"+lib_name)
-        fantome = open('include/.fantome', 'w+')
-        fantome.close()
+
         lib_makefile = open('lib/'+lib_name+'/Makefile', 'w+')
         lib_makefile.write(lib_makefile_content.replace("$1", repo_name).replace("$2", lib_name))
         lib_makefile.close()
-        lib_header = open('include/include.h', 'w+')
-        lib_header.write("/*\n** EPITECH PROJECT, 2021\n** " + repo_name + "\n** File description:\n** Header file for lib " + lib_name + ".\n*/\n\n#ifndef "+lib_name.upper()+"_H_\n    #define "+lib_name.upper()+"_H_\n\n#endif")
-        includes += ("\n#include \"" + lib_name + ".h\"")
-        lib_header.close()
-    if len(includes) > 0:
-        includes += '\n'
+
+    if not os.path.exists("include/my.h"):
+        include_file = open("include/my.h", "w+")
+        include_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n**\n*/\n\n#ifndef " + lib_name.upper() + "_H_\n    #define " + lib_name.upper() + "\n\nint " + infos["name"][2] + "(int argc, char **argv);\n\n#endif\n")
 
 makefile += "\n\n"
 
