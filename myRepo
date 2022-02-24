@@ -72,21 +72,21 @@ repo_name = os.getcwd().split("/")[-1]
 if not os.path.exists("src"):
     os.mkdir("src")
     project_file = open("src/%s.c" % infos["name"][2], "w+")
-    project_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** Main file of " + infos["name"][2] + " project.\n*/\n\nint " + infos["name"][2] + "(int argc, char **argv)\n{\n    return (0);\n}\n")
+    project_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** Main file of " + infos["name"][2] + ' project.\n*/\n#include "../include/my.h"\n\nint ' + infos["name"][2] + "(int argc, char **argv)\n{\n    return (0);\n}\n")
 if not os.path.exists("include"):
     os.mkdir("include")
 includes = ""
 main_file = open('main.c', 'w+')
-main_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** Main file of " + infos["name"][2] + " project.\n*/\n\nint main(int argc, char **argv)\n{\n    return " + infos["name"][2] + "(argc, argv);\n}\n")
+main_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** Main file of " + infos["name"][2] + ' project.\n*/\n#include "include/my.h"\n\nint main(int argc, char **argv)\n{\n    return ' + infos["name"][2] + "(argc, argv);\n}\n")
 main_file.close()
 
 if infos["lib"][2] == False:
     lib_name = "library"
     if not os.path.exists("lib"):
         os.mkdir("lib")
-    if not os.path.exists("include/include.h"):
-        include_file = open("include.include.h", "w+")
-        include_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** \n*/\n\n#ifndef " + lib_name.upper() + "_H_\n    #define " + lib_name.upper() + "\n\n" + infos["name"][2] + "(int argc, char **argv);\n\n#endif\n")
+    if not os.path.exists("include/my.h"):
+        include_file = open("include/my.h", "w+")
+        include_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n**\n*/\n\n#ifndef " + lib_name.upper() + "_H_\n    #define " + lib_name.upper() + "\n\nint " + infos["name"][2] + "(int argc, char **argv);\n\n#endif\n")
 
 if infos["lib"][2]:
     makefile += "	-L./lib -l" + " -l".join("library")
@@ -109,9 +109,6 @@ if infos["lib"][2]:
     if len(includes) > 0:
         includes += '\n'
 
-lib_header = open('include/'+infos["name"][2]+'.h', 'w+')
-lib_header.write("/*\n** EPITECH PROJECT, 2021\n** " + repo_name + "\n** File description:\n** Header file for project " + infos["name"][2] + ".\n*/\n"+includes+"\n#ifndef "+infos["name"][2].upper()+"_H_\n    #define "+infos["name"][2].upper()+"_H_\n\n#endif")
-lib_header.close()
 makefile += "\n\n"
 
 makefile += "${NAME}:	${OBJ}\n" + lib_actions.replace("make$", "make") + "			gcc -o ${NAME} ${OBJ} $(LIB)\n\nall :		${NAME}\n\n"
