@@ -86,7 +86,7 @@ if infos["lib"][2] == False:
         os.mkdir("lib")
     if not os.path.exists("include/include.h"):
         include_file = open("include.include.h", "w+")
-        include_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** \n*/\n\n#ifndef " + lib_name.upper() + "_H_\n    #define " + lib_name.upper() + "\n\n" + infos[name][2] + "(int argc, char **argv);\n\n#endif\n")
+        include_file.write("/*\n** EPITECH PROJECT, 2022\n** " + repo_name + "\n** File description:\n** \n*/\n\n#ifndef " + lib_name.upper() + "_H_\n    #define " + lib_name.upper() + "\n\n" + infos["name"][2] + "(int argc, char **argv);\n\n#endif\n")
 
 if infos["lib"][2]:
     makefile += "	-L./lib -l" + " -l".join("library")
